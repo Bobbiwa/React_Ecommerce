@@ -1,0 +1,39 @@
+.header {
+    background-color: white;
+    .header-top {
+        height: 50px;
+        border-bottom: 1px solid #76cdd8;
+        text-align: right;
+        line-height: 50px;
+        .username {
+            margin: 0 0 0 10px;
+        }
+    }
+    .header-bottom {
+        display: flex;
+        height: 50px;
+        .header-bottom-left {
+            position: relative;
+            width: 25%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+            &::after {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 50px;
+                content: '';
+                border-top:20px solid white;
+                border-right:20px solid transparent;
+                border-bottom:20px solid transparent;
+                border-left:20px solid transparent;
+            }
+        }
+        .header-bottom-right {
+            width: 75%;
+            text-align: right;
+            margin-right: 10px;
+        }
+    }
+}
