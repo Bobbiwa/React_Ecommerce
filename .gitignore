@@ -21,6 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/productList/ProductList.jsx
-src/Demo.jsx
-src/App.js
+
+
+src/CURD-component/Table.jsx
+src/CURD-component/Modal.jsx
+src/CURD-component/table.less
+
+
+
+src/CURD-component/Button.jsx
+src/CURD-component/ModalButton.jsx
