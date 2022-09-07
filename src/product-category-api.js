@@ -12,9 +12,7 @@ export const update = (categoryList, modalCurrentValue, categoryName) => {
     categoryList.map((item) => {
         if (item.key === modalCurrentValue.key) {
             item.name = categoryName
-            return item
-        } else {
-            return item
         }
+        return item
     })
 }

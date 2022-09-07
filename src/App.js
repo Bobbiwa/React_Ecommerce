@@ -4,7 +4,6 @@ import Login from './pages/login/Login';
 import ProductList from './productList/ProductList';
 import './App.less';
 
-import Demo from './CategoryTemplate';
 import Demo2 from './Demo2';
 
 function App() {
