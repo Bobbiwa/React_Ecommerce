@@ -4,8 +4,8 @@ import Login from './pages/login/Login';
 import ProductList from './productList/ProductList';
 import './App.less';
 
-import Demo from './Demo';
-
+import Demo from './CategoryTemplate';
+import Demo2 from './Demo2';
 
 function App() {
     return (
@@ -14,7 +14,7 @@ function App() {
                 <Route path='/login' element={<Login />} />
                 <Route path='/admin/*' element={<Admin />} />
                 <Route path='/product-list' element={<ProductList />} />
-                <Route path='/demo' element={<Demo />} />
+                <Route path='/demo2' element={<Demo2 />} />
             </Routes>
         </>
 
