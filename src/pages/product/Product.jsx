@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { saveProductAction } from '../../redux/actions/product'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProductListAsync, searchProductAsync } from '../../redux/slice/productSlice'
 import { Card, Button, Select, Input, Table, Popconfirm } from 'antd';
 import { PlusSquareOutlined, SearchOutlined } from '@ant-design/icons';
-import { reqProductList } from '../../api'
-import { reqSearchProduct } from '../../api'
 import { pageSize } from '../../config'
-import { reProductData } from '../../components/reProductData'
+import { formatProductData } from '../../components/formatProductData'
+
 
 
 export default function Product() {
@@ -15,30 +14,23 @@ export default function Product() {
   const navigate = useNavigate()
   const [productList, setProductList] = useState([])
   const [keywords, setKeywords] = useState('')
-
   const dispatch = useDispatch()
 
   const getProductList = async () => {
-    let result
     if (keywords.length) {
-      result = await reqSearchProduct({ q: keywords })
-      const { products } = result.data
-      result = reProductData(products)  // eslint-disable-line
+      dispatch(searchProductAsync({q: keywords}))
     } else {
-      result = await reqProductList()
-      const { products } = result.data
-      //Save to Redux for future use by <Detal/> and <AddUp../>
-      dispatch(saveProductAction(products))
-      //Organize data for datasource
-      result = reProductData(products)  // eslint-disable-line
+      dispatch(getProductListAsync())
     }
-    setProductList(result)
   }
 
   useEffect(() => {
     getProductList()
-    //刚更改完state并非不能立刻拿到，要注意副作用的依赖项
   }, []) // eslint-disable-line 
+
+  const { list } = useSelector((store) => store.productInfo)
+  const finalList = formatProductData(list)
+
 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
@@ -60,7 +52,7 @@ export default function Product() {
     setProductList(newProductList)
   }
 
-  const dataSource = productList
+  const dataSource = finalList
 
   const columns = [
     {

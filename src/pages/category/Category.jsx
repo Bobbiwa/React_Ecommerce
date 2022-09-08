@@ -6,7 +6,8 @@ import { Card, Button, Table, Modal, Form, Input, message } from 'antd';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { reqCategoryList } from '../../api/index'
 import { pageSize } from '../../config'
-import { saveCategoryListAction } from '../../redux/actions/category'
+// import { saveCategoryList } from '../../redux/actions/category'
+import {saveCategoryList} from '../../redux/slice/categorySlice'
 
 export default function Category() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -21,7 +22,7 @@ export default function Category() {
     const getCategoryList = async () => {
       let result = await reqCategoryList()
       let { data } = result
-      dispatch(saveCategoryListAction(data))  //save redux
+      dispatch(saveCategoryList(data))  //save redux
       let finalData = data.map((item, index) => {
         return { key: index, "categoryName": item }
       })

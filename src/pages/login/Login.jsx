@@ -4,7 +4,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Button, Form, Input, message } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { reqLogin } from '../../api/index'
-import {saveUserInfoAction} from '../../redux/actions/login'
+import {saveUserInfo} from '../../redux/slice/userInfoSlice'
 import './login.less'
 export default function Login() {
     const formInstance = useRef()
@@ -19,7 +19,9 @@ export default function Login() {
                 const result = await reqLogin(values)
                 const { status, data } = result
                 if(status === 200) {
-                    dispatch(saveUserInfoAction(data)) //save redux
+                    dispatch(saveUserInfo(data)) //save redux
+                    localStorage.setItem('username',JSON.stringify(data.username))
+                    localStorage.setItem('token',data.token)
                     navigate('/admin/home')
                 } else {
                     message.warning('Username or password input error!')

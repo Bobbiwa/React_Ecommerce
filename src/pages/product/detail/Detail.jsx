@@ -9,8 +9,7 @@ export default function Detail() {
     const params = useParams()
     const navigate = useNavigate()
     const [productDetail, setProductDetail] = useState({})
-    const productInfo = useSelector(state => state.productInfo)
-
+    const productInfo = useSelector(state => state.productInfo.list)
     const { title, description, price, category, images, brand, rating } = productDetail
 
     useEffect(() => {
