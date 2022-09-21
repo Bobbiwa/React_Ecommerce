@@ -12,7 +12,7 @@ export default function User() {
   const [userList, setUserList] = useState([])
   const [categoryList, setCategoryList] = useState([])
   const formInstance = useRef()
-  const categoryInfo = useSelector(state => state.categoryInfo)
+  const categoryInfo = useSelector(state => state.categoryInfo.value)
 
   useEffect(() => {
     //get user list

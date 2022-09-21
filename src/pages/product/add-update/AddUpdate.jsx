@@ -21,8 +21,8 @@ export default function AddUpdate() {
   const formInstance = useRef()
   const pictureWallInstance = useRef()
   const richTextInstance = useRef()
-  const categoryInfo = useSelector(state => state.categoryInfo)
-  const productListInfo = useSelector(state => state.productInfo)
+  const categoryInfo = useSelector(state => state.categoryInfo.value)
+  const productListInfo = useSelector(state => state.productInfo.list)
 
   useEffect(() => {
     //from redux

@@ -1,4 +1,4 @@
-import React, { useMemo, forwardRef, useRef } from 'react'
+import React, { forwardRef, useRef } from 'react'
 import { Button } from 'antd'
 import Crud from './Crud'
 import { getList, add, update } from './product-category-api'
@@ -7,12 +7,12 @@ import { pageSize } from './config'
 const MyCrud = forwardRef(Crud)
 export default function Demo2() {
   const ref = useRef()
-  const columns = useMemo(() => [
+  const columns = [
     {
       title: '分类名称',
       dataIndex: 'name'
     }
-  ])
+  ]
   // 修改过
   const operationColumns = [
     {

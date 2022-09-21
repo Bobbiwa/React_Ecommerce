@@ -22,5 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
-
+redux(old)/
+redux(同步action)/
+src/pages/product/Product(同步action).jsx
