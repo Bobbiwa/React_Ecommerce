@@ -28,7 +28,7 @@ export default function Crud({ columns, operationColumns, apiOperations, pageSiz
             .then((res) => {
                 setCategoryList(res)
             })
-    }, [])
+    }, [getList])
 
     const handleShowAdd = () => {
         setModalCurrentValue({})

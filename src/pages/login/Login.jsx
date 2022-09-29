@@ -4,7 +4,7 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Button, Form, Input, message } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { reqLogin } from '../../api/index'
-import {saveUserInfoAction} from '../../redux/actions/login'
+import {saveUserInfo} from '../../redux/slice/userInfoSlice'
 import './login.less'
 export default function Login() {
     const formInstance = useRef()
@@ -19,7 +19,9 @@ export default function Login() {
                 const result = await reqLogin(values)
                 const { status, data } = result
                 if(status === 200) {
-                    dispatch(saveUserInfoAction(data)) //save redux
+                    dispatch(saveUserInfo(data)) //save redux
+                    localStorage.setItem('username',JSON.stringify(data.username))
+                    localStorage.setItem('token',data.token)
                     navigate('/admin/home')
                 } else {
                     message.warning('Username or password input error!')
@@ -36,10 +38,10 @@ export default function Login() {
     return (
         <div className='login'>
             <header>
-                <h1>Manage System</h1>
+                <h1 data-testid="title">Manage System</h1>
             </header>
             <section>
-                <h1>用户登录</h1>
+                <h1 data-testid="userLogin">用户登录</h1>
                 <Form
                     name="normal_login"
                     className="login-form"
@@ -65,8 +67,8 @@ export default function Login() {
                         />
                     </Form.Item>
                     <Form.Item>
-                        <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+                        <Button data-testid="login" type="primary" htmlType="submit" className="login-form-button">
+                            Login
                         </Button>
                     </Form.Item>
                 </Form>

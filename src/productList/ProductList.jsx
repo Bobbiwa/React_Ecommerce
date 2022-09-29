@@ -18,7 +18,7 @@ export default function ProductList() {
     //当前展示
     const currentPageList = useMemo(() => {
         return productList.slice(0, (currentPage + 1) * PRODUCT_PAGE_SIZE) //slice截取超过arrlength不报错
-    }, [productList, currentPage, PRODUCT_PAGE_SIZE])
+    }, [productList, currentPage])
     //当前isLoading
     // const isLoading = useMemo(() => {
     //     if (maxPage !== 0 && currentPage >= maxPage)  return false

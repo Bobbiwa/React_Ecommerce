@@ -7,7 +7,7 @@ import { Button, Popconfirm } from 'antd';
 import { FullscreenOutlined, FullscreenExitOutlined } from '@ant-design/icons';
 import { reqWeather } from '../../../api/index'
 import { TIME_FORMAT } from '../../../config/index'
-import { deleteUserInfoAction } from '../../../redux/actions/login'
+import { logout } from '../../../redux/slice/userInfoSlice'
 import './header.less';
 
 export default function Header() {
@@ -52,7 +52,9 @@ export default function Header() {
   };
 
   const handleLogoutConfirm = () => {
-    dispatch(deleteUserInfoAction())  
+    dispatch(logout())
+    localStorage.removeItem('username')
+    localStorage.removeItem('token')
   }
 
   return (
@@ -63,7 +65,7 @@ export default function Header() {
         </Button>
         <span className='username'>欢迎{userInfo.username}</span>
         <Popconfirm onConfirm={handleLogoutConfirm} title="Are you sure？" okText="Yes" cancelText="No">
-          <Button type='link' size='small'>退出登录</Button>
+          <Button data-testid="logoutButton" type='link' size='small'>退出登录</Button>
         </Popconfirm>
       </div>
 
